@@ -9,9 +9,6 @@ wheels/
 # Virtual environments
 .venv
 
-# App-generated files
+# Project files
 cache
-web.html
-
-# Development files
 testing.ipynb
