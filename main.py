@@ -13,7 +13,6 @@ def get_file(file: str):
 
 def get_struct(compound):
     url = f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/{compound}/property/CanonicalSMILES/JSON"
-    response = requests.get(url)
     
     if not os.path.exists("./cache"):
         os.makedirs("./cache")
@@ -24,6 +23,7 @@ def get_struct(compound):
         with open(f"./cache/{compound.lower()}.pdb", "r") as f:
             return f.read()
     
+    response = requests.get(url)
     if response.status_code == 200:
         try:
             data = response.json()
