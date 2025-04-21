@@ -13,17 +13,17 @@ def get_file(file: str):
 
 def get_struct(compound):
     url = f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/{compound}/property/CanonicalSMILES/JSON"
-    response = requests.get(url)
     
-    if not os.path.exists("./cache"):
+    if not os.path.isfolder("./cache"):
         os.makedirs("./cache")
-    if not os.path.exists("./cache/3Dmol-min.js"):
+    if not os.path.isfile("./cache/3Dmol-min.js"):
         with open("./cache/3Dmol-min.js", "w") as f:
             f.write(requests.get("https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.4.1/3Dmol-min.js").text)
-    if os.path.exists(f"./cache/{compound.lower()}.pdb"):
+    if os.path.isfile(f"./cache/{compound.lower()}.pdb"):
         with open(f"./cache/{compound.lower()}.pdb", "r") as f:
             return f.read()
     
+    response = requests.get(url)
     if response.status_code == 200:
         try:
             data = response.json()
@@ -113,13 +113,20 @@ class MainWindow(QWidget):
     def display_3d_structure(self, struct):
         struct_str = '\\n'.join(struct.splitlines())
         
-        with open('./assets/template.html', 'r') as fetch:
-            data = fetch.read()
-            data = data.replace('temp', struct_str)
-            file = open('./cache/web.html', 'w')
-            file.write(data)
-            file.close()
-            fetch.close()
+        if not os.path.isfile('./assets/template.html'):
+            res = requests.get('https://raw.githubusercontent.com/AtTheZenith/pyqtmol/main/assets/template.html')
+
+            if res.response == 200:
+                with open('./assets/template.html', 'w') as dlf:
+                    dlf.write(res.text)
+
+            with open('./assets/template.html', 'r') as fetch:
+                data = fetch.read()
+                data = data.replace('temp', struct_str)
+                file = open('./cache/web.html', 'w')
+                file.write(data)
+                file.close()
+                fetch.close()
 
         self.webview_frame.setUrl(get_file('./cache/web.html'))
 
