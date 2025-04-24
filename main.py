@@ -120,7 +120,7 @@ def get_struct(compound):
         ]
 
         if len(pdb_ids) != 0:
-            pdb = requests.get(pdb_urls[1]).text
+            pdb = requests.get(pdb_urls[0]).text
             with open(f"./cache/{compound.upper()}.pdb", "w") as f:
                 f.write(pdb)
             return pdb

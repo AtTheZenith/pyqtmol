@@ -45,6 +45,7 @@
 
     viewer.zoomTo();
     viewer.setStyle({}, {sphere: {radius: 0.3}, stick: {radius: 0.1}});
+    viewer.setStyle({elem: 'C'}, {sphere: {radius: 0.3, color: 'slategray'}, stick: {radius: 0.1, color: 'slategray'}})
     viewer.setStyle({elem: 'H'}, {sphere: {radius: 0.2}, stick: {radius: 0.05}});
     viewer.render();
     viewer.zoom(1.08, 500);
