@@ -1,7 +1,6 @@
 # pyqtmol
 
-[![Python ≥3.12](https://img.shields.io/badge/python-%3E%3D3.12-blue)](https://www.python.org/downloads/)  
-[![License: GPL‑3.0](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
+[![Python ≥3.12](https://img.shields.io/badge/python-%3E%3D3.12-blue)](https://www.python.org/downloads/) [![License: GPL‑3.0](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 
 An **interactive 3D compound structure visualizer** built in Python.  
 Under the hood it uses:
