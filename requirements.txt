@@ -1,4 +1,4 @@
-pip>=25
-pyside6>=6.8
-rdkit>=2024.9
-requests>=2.32
+pip<=26
+pyside6<=6.9
+rdkit<=2024.10
+requests<=2.33

@@ -2,6 +2,7 @@
 QWidget {
   background-color: #1a1a1a;
   color: #fff;
+  font-size: 14px;
 }
 
 /* Webview Holder Frame */
@@ -9,6 +10,7 @@ QFrame {
   padding: 0px;
   border-radius: 5px;
   background-color: #000;
+  font-size: 14px;
 }
 
 /* Search Button */
@@ -18,11 +20,12 @@ QPushButton {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #404040;
+  font-size: 14px;
 }
 
 QPushButton:hover {
   background-color: #404040;
-  border: 1px solid #303030;  
+  border: 1px solid #303030;
 }
 
 QPushButton:pressed {
@@ -36,4 +39,5 @@ QLineEdit {
   border: 1px solid #404040;
   border-radius: 5px;
   background-color: #303030;
+  font-size: 14px;
 }
