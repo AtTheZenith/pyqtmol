@@ -76,25 +76,23 @@ def get_struct(compound):
         with open(f"./cache/{compound.upper()}.pdb", "r") as f:
             return f.read()
 
-    url = f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/{compound.translate(str.maketrans('₀₁₂₃₄₅₆₇₈₉', '0123456789'))}/property/CanonicalSMILES/JSON"
+
+    url = f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/{compound.translate(str.maketrans('₀₁₂₃₄₅₆₇₈₉', '0123456789'))}/SDF"
     res = requests.get(url)
     if res.status_code == 200:
         try:
-            data = res.json()
-            smiles = data["PropertyTable"]["Properties"][0]["CanonicalSMILES"]
-            mol = Chem.MolFromSmiles(smiles)
-            mol = Chem.AddHs(mol)
-
-            params = rdDistGeom.ETKDG()
-            success = rdDistGeom.EmbedMolecule(mol, params)
-            if success != 0:
-                raise ValueError("3D embedding failed.")
+            mol = Chem.MolFromMolBlock(res.text, sanitize=False, removeHs=False)
+            if mol is None:
+                raise ValueError("Failed.")
+            Chem.SanitizeMol(mol)
+            rdDistGeom.EmbedMolecule(mol, rdDistGeom.ETKDG())
             pdb = Chem.MolToPDBBlock(mol)
             with open(f"./cache/{compound.upper()}.pdb", "w") as f:
                 f.write(pdb)
             return pdb
-        except (KeyError, IndexError):
+        except (KeyError, IndexError, ValueError):
             pass
+
 
     query = {
         "query": {

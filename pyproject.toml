@@ -1,11 +1,10 @@
 [project]
 name = "pyqtmol"
-version = "1.2.1"
+version = "1.3.0"
 description = "A compound structure visualizer written in Python with PySide6, using 3dmol.js as the viewer."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "pip<=26",
     "pyside6<=6.9",
     "rdkit<=2024.10",
     "requests<=2.33",

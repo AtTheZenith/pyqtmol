@@ -6,8 +6,6 @@ dist/
 wheels/
 *.egg-info
 uv.lock
-
-# Virtual environments
 .venv
 
 # Project files
