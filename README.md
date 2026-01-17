@@ -11,10 +11,10 @@ Under the hood it uses:
 
 ---
 
-## 🌟 Key Features
+## Key Features
 
 - **Search by name**  
-  Fetches SMILES from PubChem and falls back to PDB from RCSB if needed.  
+  Fetches compounds (including SMILES) from PubChem and falls back to PDB from RCSB if needed.  
 - **Native WebView**  
   Renders within a Qt `QWebEngineView` using the 3Dmol.js API.  
 - **Dynamic caching**  
