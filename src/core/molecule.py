@@ -4,12 +4,13 @@ from rdkit.Chem import rdDistGeom
 
 from src.core.config import CACHE_DIR
 
+
 class MoleculeService:
     """
     Service for handling molecule data conversions and file operations.
     Keeps IO and heavy logic separate from UI.
     """
-    
+
     @staticmethod
     def get_cached_structure(compound_name: str) -> str | None:
         """Retrieves the PDB structure from cache if it exists."""
@@ -38,7 +39,7 @@ class MoleculeService:
         mol = Chem.MolFromMolBlock(mol_block, sanitize=False, removeHs=False)
         if mol is None:
             raise ValueError("Could not parse molecule block")
-        
+
         Chem.SanitizeMol(mol)
         rdDistGeom.EmbedMolecule(mol, rdDistGeom.ETKDG())
         return Chem.MolToPDBBlock(mol)

@@ -1,5 +1,6 @@
 import re
 
+
 def subscript_formula(formula: str) -> str:
     """
     Converts a chemical formula string to use subscript numbers.

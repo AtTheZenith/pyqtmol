@@ -4,6 +4,7 @@
 
 An **interactive 3D compound structure visualizer** built in Python.  
 Under the hood it uses:
+
 - **PySide6** (Qt) for a modern desktop GUI  
 - **3Dmol.js** for high‑quality WebGL rendering  
 - **RDKit** to generate 3D conformers from SMILES  
@@ -26,13 +27,15 @@ Under the hood it uses:
 
 ### Using `pip`
 
-1.  **Clone and enter folder**  
+1. **Clone and enter folder**  
+
     ```bash
     git clone https://github.com/AtTheZenith/pyqtmol.git
     cd pyqtmol
     ```
 
-2.  **(Optional) Create a virtual environment**
+2. **(Optional) Create a virtual environment**
+
     ```bash
     python -m venv
     # Linux/macOS
@@ -41,32 +44,37 @@ Under the hood it uses:
     .venv\Scripts\activate
     ```
 
-3.  **Install dependencies**
+3. **Install dependencies**
+
     ```bash
     pip install --upgrade pip
     pip install -r requirements.txt
     ```
 
-4.  **Run the app**
+4. **Run the app**
+
     ```bash
-    python main.py
+    python -m src.main
     ```
 
 ### Using `uv`
 
 1. **Clone and enter**
+
     ```bash
     git clone https://github.com/AtTheZenith/pyqtmol.git
     cd pyqtmol
     ```
 
 2. **Create and enter a virtual enviroment**
+
     ```bash
     uv venv
     .venv/Scripts/activate
     ```
 
 3. **Run the app**
+
     ```bash
-    uv run main.py
+    uv run -m src.main
     ```

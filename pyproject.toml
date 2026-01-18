@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pyqtmol"
-version = "2.0.0"
+version = "2.1.0"
 description = "A compound structure visualizer written in Python with PySide6, using 3dmol.js as the viewer."
 readme = "README.md"
 requires-python = ">=3.12"
