@@ -1,0 +1,127 @@
+/* Main Window & General */
+QMainWindow {
+    background-color: @BACKGROUND;
+}
+
+QWidget {
+    color: @TEXT_PRIMARY;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 14px;
+}
+
+/* Scrollbars */
+QScrollBar:vertical {
+    border: none;
+    background: @BACKGROUND;
+    width: 10px;
+    margin: 0px;
+}
+
+QScrollBar::handle:vertical {
+    background: @SURFACE_HOVER;
+    min-height: 20px;
+    border-radius: 5px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: @BORDER;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+/* Sidebar */
+QWidget#sidebar {
+    background-color: @SURFACE;
+    border-right: 1px solid @BORDER;
+}
+
+QLabel#brand_label {
+    font-size: 24px;
+    font-weight: bold;
+    color: @PRIMARY;
+}
+
+QLabel#results_label {
+    color: @TEXT_SECONDARY;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Hydrogen Toggle */
+QCheckBox#hydrogen_toggle {
+    color: @TEXT_PRIMARY;
+    font-size: 14px;
+    spacing: 12px;
+    margin-top: 5px;
+}
+
+QCheckBox#hydrogen_toggle::indicator {
+    width: 18px;
+    height: 18px;
+    background-color: @SURFACE;
+    border: 1px solid @BORDER;
+    border-radius: 4px;
+}
+
+QCheckBox#hydrogen_toggle::indicator:hover {
+    border-color: @PRIMARY;
+}
+
+QCheckBox#hydrogen_toggle::indicator:checked {
+    background-color: @PRIMARY;
+    border-color: @PRIMARY;
+    image: url(@ASSETS_DIR/check.svg);
+}
+
+/* Search Bar Container */
+QFrame#search_bar {
+    background-color: @SURFACE;
+    border-radius: 25px;
+    border: 1px solid @BORDER;
+}
+
+/* Search Input */
+QLineEdit#search_input {
+    border: none;
+    background: transparent;
+    color: @TEXT_PRIMARY;
+    font-size: 16px;
+    selection-background-color: @PRIMARY;
+}
+
+/* Search Button */
+QPushButton#search_button {
+    background-color: @PRIMARY;
+    color: white;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+QPushButton#search_button:hover {
+    background-color: @PRIMARY_HOVER;
+}
+
+/* Result List */
+QListWidget#result_list {
+    background-color: transparent;
+    outline: none;
+}
+
+QListWidget#result_list::item {
+    border-radius: 8px;
+    padding: 0px;
+}
+
+/* Loading Overlay */
+QLabel#loading_label {
+    color: @TEXT_PRIMARY;
+    font-size: 18px; 
+    font-weight: bold;
+}
+
+/* Molecule Viewer */
+QWebEngineView {
+    background: transparent;
+}

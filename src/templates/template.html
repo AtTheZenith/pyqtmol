@@ -1,0 +1,101 @@
+<html>
+
+<head>
+  <script type="text/javascript" src="./3Dmol-min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000000;
+    }
+
+    .mol-container {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body style="margin: 0px; padding: 0px;">
+  <div id="viewer" style="width: 100%; height: 100%;"></div>
+
+  <script>
+    let currentPDB = PDB_CONTENT_PLACEHOLDER;
+    let showHydrogens = HYDROGEN_STATE_PLACEHOLDER;
+
+    let element = document.querySelector('#viewer');
+    let config = {backgroundColor: 'black'};
+    let viewer = $3Dmol.createViewer(element, config);
+
+    function loadMolecule() {
+        try {
+            if (!currentPDB || currentPDB.includes("temp")) return; // Check if temp is still there or null
+            
+            viewer.clear();
+            viewer.addModel(currentPDB, "pdb", {keepH: true});
+            
+            // Setup Hover
+            viewer.setHoverable({}, true, function (atom, viewer, event, container) {
+                if (!atom.label) {
+                    atom.label = viewer.addLabel(
+                      atom.elem,
+                      {position: atom, backgroundColor: 'mintcream', fontColor: 'black'}
+                    );
+                }
+            }, function (atom) {
+                if (atom.label) {
+                    viewer.removeLabel(atom.label);
+                    delete atom.label;
+                }
+            });
+            
+            updateStyle();
+            viewer.zoomTo();
+        } catch (e) {
+            console.error("Error in loadMolecule:", e);
+           // alert("JS Error: " + e); // Uncomment for debugging if console not visible
+        }
+    }
+
+    function updateStyle() {
+        let baseStyle = {sphere: {radius: 0.3}, stick: {radius: 0.1}};
+        let cStyle = {sphere: {radius: 0.3, color: 'slategray'}, stick: {radius: 0.1, color: 'slategray'}};
+        let hStyle = {sphere: {radius: 0.2}, stick: {radius: 0.05}};
+
+        if (showHydrogens) {
+             // Style everything
+            viewer.setStyle({}, baseStyle);
+            // Override H
+            viewer.setStyle({elem: 'H'}, hStyle);
+        } else {
+            // Style everything 
+            viewer.setStyle({}, baseStyle);
+            // Hide H by setting scale to 0 (robust way to hide in 3Dmol if hidden:true fails)
+            // Or use 'hidden': true which usually works for selection.
+            // Let's try explicit hidden property on style which 3Dmol sometimes supports as 'hidden'
+            viewer.setStyle({elem: 'H'}, {hidden: true}); 
+        }
+        
+        // Override Carbon (always visible)
+        viewer.setStyle({elem: 'C'}, cStyle);
+
+        viewer.render();
+    }
+    
+    // Initial Load
+    loadMolecule();
+    viewer.zoom(1.08, 500);
+
+    function toggleHydrogens(show) {
+        showHydrogens = show;
+        updateStyle();
+    }
+
+
+    
+
+
+  </script>
+</body>
+
+</html>
