@@ -77,13 +77,13 @@ class SearchWorker(QRunnable):
                 for entry in data.get("result_set", [])[:10]:  # Limit to 10
                     results.append(SearchResult(identifier=entry["identifier"], name=entry["identifier"], source="PDB", inquiry_name=name_safe))
 
-            if not results:
-                raise ValueError("No results found.")
-
-            self.signals.finished.emit(results)
-
         except Exception as e:
             self.signals.error.emit(str(e))
+
+        if not results or len(results) == 0:
+            raise ValueError("No results found.")
+
+        self.signals.finished.emit(results)
 
 
 class FetchWorker(QRunnable):
