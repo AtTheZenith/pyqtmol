@@ -81,7 +81,8 @@ class SearchWorker(QRunnable):
             self.signals.error.emit(str(e))
 
         if not results or len(results) == 0:
-            raise ValueError("No results found.")
+            self.signals.error.emit("No results found.")
+            return
 
         self.signals.finished.emit(results)
 
