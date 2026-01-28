@@ -40,6 +40,6 @@ coll = COLLECT(
     strip=False,
     upx=False,
     upx_exclude=[],
-    name='pyqtmol', # This is the main folder name in /dist
+    name='release', # This is the main folder name in /dist
     contents_directory='bin' # <--- This is the subfolder with all the packages
 )
