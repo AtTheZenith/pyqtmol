@@ -72,7 +72,7 @@ QCheckBox#hydrogen_toggle::indicator:hover {
 QCheckBox#hydrogen_toggle::indicator:checked {
     background-color: @PRIMARY;
     border-color: @PRIMARY;
-    image: url(@ASSETS_DIR/check.svg);
+    image: url(@CHECK);
 }
 
 /* Search Bar Container */

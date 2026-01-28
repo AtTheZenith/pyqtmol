@@ -1,9 +1,15 @@
+import os
+
 from PySide6.QtGui import QColor, QPalette
 from PySide6.QtWidgets import QApplication
 
 
+from src.core.config import RESOURCES_DIR
+
+
 class Theme:
     # Colors
+
     BACKGROUND = "#1e1e1e"
     SURFACE = "#252526"
     SURFACE_HOVER = "#2a2d2e"
@@ -18,7 +24,6 @@ class Theme:
     @staticmethod
     def apply(app: QApplication):
         app.setStyle("Fusion")
-
         palette = QPalette()
         palette.setColor(QPalette.Window, QColor(Theme.BACKGROUND))
         palette.setColor(QPalette.WindowText, QColor(Theme.TEXT_PRIMARY))
@@ -33,14 +38,12 @@ class Theme:
         palette.setColor(QPalette.Link, QColor(Theme.PRIMARY))
         palette.setColor(QPalette.Highlight, QColor(Theme.PRIMARY))
         palette.setColor(QPalette.HighlightedText, QColor(Theme.TEXT_PRIMARY))
-
         app.setPalette(palette)
 
         # Load QSS
-        import os
-        from src.core.config import ASSETS_DIR
 
-        qss_path = os.path.join(ASSETS_DIR, "style.qss")
+        qss_path = os.path.join(RESOURCES_DIR, "style.qss")
+
         if os.path.exists(qss_path):
             with open(qss_path, "r") as f:
                 qss = f.read()
@@ -58,7 +61,7 @@ class Theme:
                 "@BORDER": Theme.BORDER,
                 "@ERROR": Theme.ERROR,
                 "@SUCCESS": Theme.SUCCESS,
-                "@ASSETS_DIR": ASSETS_DIR.replace("\\", "/"),
+                "@CHECK": os.path.join(RESOURCES_DIR, "check.svg").replace("\\", "/"),
             }
 
             for key in sorted(vars.keys(), key=len, reverse=True):
